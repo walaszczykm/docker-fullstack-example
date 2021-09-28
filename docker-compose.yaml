@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=foobar
+      - MYSQL_DATABASE=db
+
+  redis:
+    image: redis
+
+  api:
+    build: ./server
+    environment:
+      - PORT=3000
+    depends_on:
+      - mysql
+      - redis
+
+  haproxy:
+    image: haproxy
+    volumes:
+      - ./proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api

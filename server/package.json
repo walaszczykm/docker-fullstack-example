@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
+    "redis": "^3.1.2",
+    "uuid": "^8.3.2"
+  }
+}
